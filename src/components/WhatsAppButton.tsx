@@ -1,14 +1,14 @@
-import { MessageCircle } from "lucide-react";
-
 const WhatsAppButton = () => (
   <a
     href="https://wa.me/919177822547?text=Hi%2C%20I%20am%20interested%20in%20your%20services."
     target="_blank"
     rel="noopener noreferrer"
-    className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-primary-foreground p-4 rounded-full shadow-lg hover:scale-110 transition-transform"
+    className="fixed bottom-6 right-6 z-50 bg-[#25D366] p-3.5 rounded-full shadow-lg hover:scale-110 transition-transform"
     aria-label="Chat on WhatsApp"
   >
-    <MessageCircle className="w-6 h-6" />
+    <svg viewBox="0 0 32 32" className="w-7 h-7 fill-white">
+      <path d="M16.004 0h-.008C7.174 0 0 7.176 0 16.004c0 3.5 1.129 6.742 3.047 9.379L1.054 31.25l6.1-1.953A15.9 15.9 0 0 0 16.004 32C24.826 32 32 24.826 32 16.004S24.826 0 16.004 0zm9.32 22.617c-.391 1.102-1.938 2.016-3.164 2.281-.84.18-1.937.324-5.633-1.211-4.727-1.961-7.77-6.758-8.004-7.07-.226-.313-1.89-2.516-1.89-4.797s1.195-3.398 1.617-3.867c.422-.469.922-.586 1.227-.586.297 0 .601.004.86.015.277.012.648-.105 1.015.774.39.937 1.328 3.234 1.445 3.468.117.235.196.508.04.82-.157.313-.235.508-.469.782-.234.273-.492.61-.703.82-.234.235-.477.488-.204.957.273.469 1.215 2.004 2.609 3.246 1.793 1.598 3.305 2.094 3.773 2.328.47.235.746.196 1.02-.117.274-.313 1.172-1.368 1.484-1.836.313-.469.625-.391 1.055-.235.43.157 2.726 1.29 3.195 1.524.469.234.781.352.899.547.117.195.117 1.133-.274 2.227z"/>
+    </svg>
   </a>
 );
 
