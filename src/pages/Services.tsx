@@ -1,11 +1,15 @@
 import { Shield, Sparkles, Users, CheckCircle2 } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import { Link } from "react-router-dom";
+import securityTeam from "@/assets/security-team.jpg";
+import housekeepingImg from "@/assets/housekeeping.jpg";
+import manpowerImg from "@/assets/manpower.jpg";
 
 const serviceDetails = [
   {
     icon: Shield,
     title: "Security Guard Services",
+    image: securityTeam,
     description: "We provide well-trained, uniformed security personnel for residential complexes, commercial offices, industrial sites, events, and more.",
     benefits: [
       "Trained and licensed security guards",
@@ -18,6 +22,7 @@ const serviceDetails = [
   {
     icon: Sparkles,
     title: "Housekeeping Services",
+    image: housekeepingImg,
     description: "Our professional housekeeping staff ensures your premises remain spotless and hygienic, enhancing your work environment.",
     benefits: [
       "Daily cleaning and maintenance",
@@ -30,6 +35,7 @@ const serviceDetails = [
   {
     icon: Users,
     title: "Manpower Supply",
+    image: manpowerImg,
     description: "Flexible and reliable manpower solutions tailored to your business needs—whether temporary, contract, or permanent staffing.",
     benefits: [
       "Skilled and unskilled workforce supply",
@@ -52,7 +58,7 @@ const Services = () => (
     <section className="py-20">
       <div className="container mx-auto px-4 space-y-16">
         {serviceDetails.map((service, idx) => (
-          <div key={service.title} className={`grid md:grid-cols-2 gap-10 items-center ${idx % 2 === 1 ? "md:direction-rtl" : ""}`}>
+          <div key={service.title} className="grid md:grid-cols-2 gap-10 items-center">
             <div className={idx % 2 === 1 ? "md:order-2" : ""}>
               <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center mb-5">
                 <service.icon className="w-7 h-7 text-secondary" />
@@ -68,8 +74,8 @@ const Services = () => (
                 ))}
               </ul>
             </div>
-            <div className={`bg-muted rounded-2xl h-64 md:h-80 flex items-center justify-center ${idx % 2 === 1 ? "md:order-1" : ""}`}>
-              <service.icon className="w-20 h-20 text-muted-foreground/30" />
+            <div className={`rounded-2xl overflow-hidden shadow-card h-64 md:h-80 ${idx % 2 === 1 ? "md:order-1" : ""}`}>
+              <img src={service.image} alt={service.title} className="w-full h-full object-cover" loading="lazy" />
             </div>
           </div>
         ))}
