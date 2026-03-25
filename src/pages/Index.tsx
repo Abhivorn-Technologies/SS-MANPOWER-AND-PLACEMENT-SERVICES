@@ -1,12 +1,10 @@
 import { Link } from "react-router-dom";
-import { Shield, Sparkles, Building2, Users, CheckCircle2, Clock, IndianRupee, GraduationCap, Play } from "lucide-react";
+import { Shield, Sparkles, Building2, Users, CheckCircle2, Clock, IndianRupee, GraduationCap } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import securityTeam from "@/assets/security-team.jpg";
 import housekeepingImg from "@/assets/housekeeping.jpg";
 import manpowerImg from "@/assets/manpower.jpg";
-import ServiceCard from "@/components/ServiceCard";
 import SectionHeading from "@/components/SectionHeading";
-import { useState } from "react";
 
 const services = [
   { icon: Shield, title: "Security Guard Services", description: "Trained and verified security personnel for residential, commercial, and industrial premises.", image: securityTeam },
