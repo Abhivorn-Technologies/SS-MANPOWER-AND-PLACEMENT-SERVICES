@@ -1,12 +1,10 @@
 import { Link } from "react-router-dom";
-import { Shield, Sparkles, Building2, Users, CheckCircle2, Clock, IndianRupee, GraduationCap, Play } from "lucide-react";
+import { Shield, Sparkles, Building2, Users, CheckCircle2, Clock, IndianRupee, GraduationCap } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import securityTeam from "@/assets/security-team.jpg";
 import housekeepingImg from "@/assets/housekeeping.jpg";
 import manpowerImg from "@/assets/manpower.jpg";
-import ServiceCard from "@/components/ServiceCard";
 import SectionHeading from "@/components/SectionHeading";
-import { useState } from "react";
 
 const services = [
   { icon: Shield, title: "Security Guard Services", description: "Trained and verified security personnel for residential, commercial, and industrial premises.", image: securityTeam },
@@ -23,7 +21,6 @@ const whyUs = [
 ];
 
 const Index = () => {
-  const [videoPlaying, setVideoPlaying] = useState(false);
 
   return (
     <>
@@ -72,33 +69,21 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Video Section */}
+      {/* Company Video */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <SectionHeading label="Watch Our Work" title="See Us in Action" description="Watch how our trained professionals deliver excellence every day." />
           <div className="max-w-4xl mx-auto">
             <div className="relative rounded-2xl overflow-hidden shadow-card-hover border border-border aspect-video bg-primary/5">
-              {videoPlaying ? (
-                <iframe
-                  src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
-                  title="SS Placements Company Video"
-                  className="absolute inset-0 w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              ) : (
-                <button
-                  onClick={() => setVideoPlaying(true)}
-                  className="absolute inset-0 w-full h-full flex flex-col items-center justify-center gap-4 group cursor-pointer"
-                >
-                  <img src={securityTeam} alt="Video thumbnail" className="absolute inset-0 w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-primary/40" />
-                  <div className="relative z-10 w-20 h-20 rounded-full bg-secondary flex items-center justify-center shadow-button group-hover:scale-110 transition-transform">
-                    <Play className="w-8 h-8 text-secondary-foreground ml-1" />
-                  </div>
-                  <span className="relative z-10 text-primary-foreground font-semibold text-lg">Watch Company Video</span>
-                </button>
-              )}
+              <video
+                src="/__l5e/assets-v1/a0a3001c-37ed-4536-b0fd-38cb8f67e1da/company-video.mp4"
+                controls
+                poster={securityTeam}
+                className="w-full h-full object-cover"
+                preload="metadata"
+              >
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
         </div>
