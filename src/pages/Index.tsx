@@ -21,7 +21,6 @@ const whyUs = [
 ];
 
 const Index = () => {
-  const [videoPlaying, setVideoPlaying] = useState(false);
 
   return (
     <>
