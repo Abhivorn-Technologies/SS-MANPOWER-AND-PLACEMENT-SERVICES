@@ -76,7 +76,7 @@ const Index = () => {
           <div className="max-w-4xl mx-auto">
             <div className="relative rounded-2xl overflow-hidden shadow-card-hover border border-border aspect-video bg-primary/5">
               <video
-                src="/company-video.mp4"
+                src="/__l5e/assets-v1/a0a3001c-37ed-4536-b0fd-38cb8f67e1da/company-video.mp4"
                 controls
                 poster={securityTeam}
                 className="w-full h-full object-cover"
