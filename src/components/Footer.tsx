@@ -1,16 +1,23 @@
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/SS SERVICE LOGO.png";
 
 const Footer = () => (
-  <footer className="bg-primary text-primary-foreground">
-    <div className="container mx-auto px-4 py-12 md:py-16">
+  <footer className="relative bg-primary text-primary-foreground pt-1 border-t-4 border-secondary/80">
+    {/* Gradient Overlay for visual depth */}
+    <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary/30 pointer-events-none" />
+    
+    <div className="container relative mx-auto px-4 py-12 md:py-16">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         {/* Brand */}
         <div>
-          <img src={logo} alt="SS Placements Logo" className="h-16 w-auto mb-4 brightness-0 invert" />
+          <Link to="/" className="inline-block hover:scale-105 transition-transform duration-300">
+            <div className="bg-white/95 p-2 rounded-lg shadow-sm mb-4">
+              <img src={logo} alt="SS Security & Housekeeping Logo" className="h-16 w-auto" />
+            </div>
+          </Link>
           <p className="text-primary-foreground/70 text-sm leading-relaxed">
-            Trusted manpower, security, and facility management services across Hyderabad. Your reliable partner since day one.
+            Trusted security, housekeeping, and specialized office boy services across Hyderabad. Your reliable partner for total facility excellence.
           </p>
         </div>
 
@@ -37,7 +44,7 @@ const Footer = () => (
             <span>Security Guard Services</span>
             <span>Housekeeping Services</span>
             <span>Facility Management</span>
-            <span>Manpower Supply</span>
+            <span>Office Boy Services</span>
           </div>
         </div>
 
@@ -55,7 +62,7 @@ const Footer = () => (
             </div>
             <div className="flex items-center gap-2">
               <Mail className="w-4 h-4 shrink-0 text-secondary" />
-              <a href="mailto:hr@ssmanpowerservices.com" className="hover:text-secondary transition">hr@ssmanpowerservices.com</a>
+              <a href="mailto:operations@ssmanpowerservices.com" className="hover:text-secondary transition">operations@ssmanpowerservices.com</a>
             </div>
           </div>
         </div>
@@ -66,7 +73,7 @@ const Footer = () => (
     <div className="border-t border-primary-foreground/10">
       <div className="container mx-auto px-4 py-5 flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-sm text-primary-foreground/50">
-          © {new Date().getFullYear()} SS Placements & Manpower Services Pvt Ltd. All rights reserved.
+          &copy; {new Date().getFullYear()} SS Security & Housekeeping Services Pvt Ltd. All rights reserved.
         </p>
         <div className="flex gap-4">
           {[Facebook, Instagram, Twitter, Linkedin].map((Icon, i) => (

@@ -1,15 +1,18 @@
-import { Shield, Sparkles, Users, CheckCircle2 } from "lucide-react";
+import { Shield, Sparkles, Users, CheckCircle2, Coffee } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import { Link } from "react-router-dom";
-import securityTeam from "@/assets/security-team.jpg";
-import housekeepingImg from "@/assets/housekeeping.jpg";
+import ScrollReveal from "@/components/ScrollReveal";
 import manpowerImg from "@/assets/manpower.jpg";
+import securityBlue from "@/assets/security_guards_logo.jpg.jpeg";
+import housekeepingBlue from "@/assets/housekeeping-luxury.png";
+import manpowerBlue from "@/assets/manpower-blue.png";
+import officeBoyFinal from "@/assets/service-office-boy-final.png";
 
 const serviceDetails = [
   {
     icon: Shield,
     title: "Security Guard Services",
-    image: securityTeam,
+    image: securityBlue,
     description: "We provide well-trained, uniformed security personnel for residential complexes, commercial offices, industrial sites, events, and more.",
     benefits: [
       "Trained and licensed security guards",
@@ -22,7 +25,7 @@ const serviceDetails = [
   {
     icon: Sparkles,
     title: "Housekeeping Services",
-    image: housekeepingImg,
+    image: housekeepingBlue,
     description: "Our professional housekeeping staff ensures your premises remain spotless and hygienic, enhancing your work environment.",
     benefits: [
       "Daily cleaning and maintenance",
@@ -33,49 +36,62 @@ const serviceDetails = [
     ],
   },
   {
-    icon: Users,
-    title: "Manpower Supply",
-    image: manpowerImg,
-    description: "Flexible and reliable manpower solutions tailored to your business needs—whether temporary, contract, or permanent staffing.",
+    icon: Coffee,
+    title: "Office Boy & Pantry Services",
+    image: officeBoyFinal,
+    description: "Optimize your corporate workflow with our well-groomed office boys and pantry staff, dedicated to maintaining professional office etiquette.",
     benefits: [
-      "Skilled and unskilled workforce supply",
-      "Temporary and permanent staffing",
-      "Quick deployment across industries",
-      "Payroll and compliance management",
-      "Scalable workforce solutions",
+      "Trained in Office Etiquette & Protocol",
+      "Pantry & Cafeteria Management",
+      "Professional Appearance & Grooming",
+      "Filing & Document Handling Support",
+      "Meeting Coordination & Guest Hospitality",
     ],
   },
 ];
 
 const Services = () => (
   <>
-    <section className="pt-28 pb-16 bg-muted/30">
+    <section className="pt-28 pb-4 bg-muted/30">
       <div className="container mx-auto px-4 text-center">
-        <SectionHeading label="Our Services" title="What We Offer" description="Comprehensive, professional, and tailored workforce solutions for every business." />
+        <ScrollReveal variant="fade" delay={300}>
+          <SectionHeading label="Our Services" title="What We Offer" description="Comprehensive, professional, and tailored workforce solutions for every business." />
+        </ScrollReveal>
       </div>
     </section>
 
-    <section className="py-20">
-      <div className="container mx-auto px-4 space-y-16">
+    <section className="py-0">
+      <div className="container mx-auto px-4 space-y-24 py-8 overflow-hidden">
         {serviceDetails.map((service, idx) => (
-          <div key={service.title} className="grid md:grid-cols-2 gap-10 items-center">
-            <div className={idx % 2 === 1 ? "md:order-2" : ""}>
-              <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center mb-5">
-                <service.icon className="w-7 h-7 text-secondary" />
-              </div>
-              <h3 className="text-2xl font-bold text-foreground mb-3">{service.title}</h3>
-              <p className="text-muted-foreground leading-relaxed mb-6">{service.description}</p>
-              <ul className="space-y-3">
-                {service.benefits.map((b) => (
-                  <li key={b} className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="w-4 h-4 text-secondary mt-0.5 shrink-0" />
-                    {b}
-                  </li>
-                ))}
-              </ul>
+          <div key={service.title} className="grid md:grid-cols-2 gap-12 items-start">
+            {/* Text Content */}
+            <div className={`md:pt-0 ${idx % 2 === 1 ? "md:order-2" : ""}`}>
+              <ScrollReveal variant={idx % 2 === 0 ? "slide-left" : "slide-right"} duration={1500} delay={300}>
+                <div>
+                  <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center mb-5">
+                    <service.icon className="w-7 h-7 text-secondary" />
+                  </div>
+                  <h3 className="text-3xl font-bold text-foreground mb-4">{service.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-6 text-lg">{service.description}</p>
+                  <ul className="space-y-4">
+                    {service.benefits.map((b, bIdx) => (
+                      <ScrollReveal key={b} variant="fade" delay={500 + (bIdx * 100)}>
+                        <li className="flex items-start gap-3 text-muted-foreground">
+                          <CheckCircle2 className="w-5 h-5 text-secondary mt-0.5 shrink-0" />
+                          <span className="text-sm md:text-base">{b}</span>
+                        </li>
+                      </ScrollReveal>
+                    ))}
+                  </ul>
+                </div>
+              </ScrollReveal>
             </div>
-            <div className={`rounded-2xl overflow-hidden shadow-card h-64 md:h-80 ${idx % 2 === 1 ? "md:order-1" : ""}`}>
-              <img src={service.image} alt={service.title} className="w-full h-full object-cover" loading="lazy" />
+            
+            {/* Image Content */}
+            <div className={`group rounded-2xl overflow-hidden shadow-card h-80 md:h-[400px] ${idx % 2 === 1 ? "md:order-1" : ""}`}>
+              <ScrollReveal variant={idx % 2 === 0 ? "slide-right" : "slide-left"} duration={1500} delay={300}>
+                <img src={service.image} alt={service.title} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+              </ScrollReveal>
             </div>
           </div>
         ))}
@@ -85,13 +101,20 @@ const Services = () => (
     {/* CTA */}
     <section className="py-16">
       <div className="container mx-auto px-4">
-        <div className="bg-gradient-cta rounded-2xl p-10 md:p-14 text-center">
-          <h2 className="text-3xl font-bold text-primary-foreground mb-4">Need a Customized Solution?</h2>
-          <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8">Tell us your requirements and we'll craft the perfect workforce solution for you.</p>
-          <Link to="/contact" className="inline-flex bg-background text-foreground px-8 py-3.5 rounded-lg font-semibold hover:bg-background/90 transition">
-            Get in Touch
-          </Link>
-        </div>
+        <ScrollReveal variant="scale" duration={1200} delay={300}>
+          <div className="bg-gradient-cta rounded-3xl p-10 md:p-16 text-center shadow-card hover:shadow-2xl hover:scale-[1.01] transition-all duration-500 group relative overflow-hidden">
+            {/* Subtle background glow */}
+            <div className="absolute top-0 left-0 w-64 h-64 bg-white/5 rounded-full -ml-32 -mt-32 blur-3xl group-hover:bg-white/10 transition-colors duration-500" />
+            
+            <div className="relative z-10">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground mb-6 leading-tight">Need a Customized Solution?</h2>
+              <p className="text-primary-foreground/90 max-w-2xl mx-auto mb-10 text-lg md:text-xl font-light">Tell us your requirements and we'll craft the perfect workforce and security solution tailored to your business.</p>
+              <Link to="/contact" className="inline-flex bg-background text-foreground px-10 py-4 rounded-xl font-bold hover:bg-white hover:scale-110 hover:shadow-button transition-all duration-300 active:scale-95 text-lg">
+                Get in Touch
+              </Link>
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   </>
