@@ -1,12 +1,14 @@
-import { Shield, Sparkles, Users, CheckCircle2, Coffee } from "lucide-react";
+import { Shield, Sparkles, Users, CheckCircle2, Coffee, Building2 } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import { Link } from "react-router-dom";
 import ScrollReveal from "@/components/ScrollReveal";
-import manpowerImg from "@/assets/manpower.jpg";
-import securityBlue from "@/assets/security_guards_logo.jpg.jpeg";
-import housekeepingBlue from "@/assets/housekeeping-luxury.png";
+import { motion } from "framer-motion";
+import manpowerImg from "@/assets/manpower-blue.png";
+import securityBlue from "@/assets/security_guard_logo.png";
+import housekeepingBlue from "@/assets/housekeeping_logo(2).png";
 import manpowerBlue from "@/assets/manpower-blue.png";
 import officeBoyFinal from "@/assets/service-office-boy-final.png";
+import facilityBlue from "@/assets/facility_management_logo(1).png";
 
 const serviceDetails = [
   {
@@ -33,6 +35,19 @@ const serviceDetails = [
       "Restroom and pantry upkeep",
       "Waste management",
       "Specialized floor and carpet cleaning",
+    ],
+  },
+  {
+    icon: Building2,
+    title: "Facility Management",
+    image: facilityBlue,
+    description: "Comprehensive facility management solutions including hospitality, security, office boy services, and more, designed to streamline your operations and maintain your infrastructure at peak performance.",
+    benefits: [
+      "Hospitality & Guest Management",
+      "Specialized Security Protocols",
+      "Office Boy & Pantry Support",
+      "Comprehensive Physical Asset Management",
+      "Tailored Workforce Solutions",
     ],
   },
   {
@@ -63,36 +78,53 @@ const Services = () => (
     <section className="py-0">
       <div className="container mx-auto px-4 space-y-24 py-8 overflow-hidden">
         {serviceDetails.map((service, idx) => (
-          <div key={service.title} className="grid md:grid-cols-2 gap-12 items-start">
+          <div 
+            key={service.title} 
+            id={service.title.toLowerCase().replace(/ & /g, "-").replace(/\s+/g, "-")}
+            className="grid md:grid-cols-2 gap-12 items-center"
+          >
             {/* Text Content */}
-            <div className={`md:pt-0 ${idx % 2 === 1 ? "md:order-2" : ""}`}>
-              <ScrollReveal variant={idx % 2 === 0 ? "slide-left" : "slide-right"} duration={1500} delay={300}>
-                <div>
-                  <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center mb-5">
-                    <service.icon className="w-7 h-7 text-secondary" />
-                  </div>
-                  <h3 className="text-3xl font-bold text-foreground mb-4">{service.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed mb-6 text-lg">{service.description}</p>
-                  <ul className="space-y-4">
-                    {service.benefits.map((b, bIdx) => (
-                      <ScrollReveal key={b} variant="fade" delay={500 + (bIdx * 100)}>
-                        <li className="flex items-start gap-3 text-muted-foreground">
-                          <CheckCircle2 className="w-5 h-5 text-secondary mt-0.5 shrink-0" />
-                          <span className="text-sm md:text-base">{b}</span>
-                        </li>
-                      </ScrollReveal>
-                    ))}
-                  </ul>
+            <motion.div 
+              className={`md:pt-0 ${idx % 2 === 1 ? "md:order-2" : ""}`}
+              initial={{ opacity: 0, x: idx % 2 === 0 ? -70 : 70 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+            >
+              <div>
+                <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center mb-5">
+                  <service.icon className="w-7 h-7 text-secondary" />
                 </div>
-              </ScrollReveal>
-            </div>
+                <h3 className="text-3xl font-bold text-foreground mb-4">{service.title}</h3>
+                <p className="text-muted-foreground leading-relaxed mb-6 text-lg">{service.description}</p>
+                <ul className="space-y-4">
+                  {service.benefits.map((b, bIdx) => (
+                    <motion.li 
+                      key={b}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: false }}
+                      transition={{ delay: 0.3 + (bIdx * 0.1) }}
+                      className="flex items-start gap-3 text-muted-foreground"
+                    >
+                      <CheckCircle2 className="w-5 h-5 text-secondary mt-0.5 shrink-0" />
+                      <span className="text-sm md:text-base">{b}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
             
             {/* Image Content */}
-            <div className={`group rounded-2xl overflow-hidden shadow-card h-80 md:h-[400px] ${idx % 2 === 1 ? "md:order-1" : ""}`}>
-              <ScrollReveal variant={idx % 2 === 0 ? "slide-right" : "slide-left"} duration={1500} delay={300}>
-                <img src={service.image} alt={service.title} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-              </ScrollReveal>
-            </div>
+            <motion.div 
+              className={`group rounded-2xl overflow-hidden shadow-card h-80 md:h-[400px] ${idx % 2 === 1 ? "md:order-1" : ""}`}
+              initial={{ opacity: 0, x: idx % 2 === 0 ? 70 : -70 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+            >
+              <img src={service.image} alt={service.title} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+            </motion.div>
           </div>
         ))}
       </div>

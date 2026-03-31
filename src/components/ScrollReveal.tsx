@@ -10,6 +10,30 @@ interface ScrollRevealProps {
   once?: boolean;
 }
 
+// A shared observer to minimize browser overhead when dozens of components are revealed at once.
+let sharedObserver: IntersectionObserver | null = null;
+const observerCallbacks = new Map<Element, (isVisible: boolean) => void>();
+
+const getSharedObserver = (threshold: number) => {
+  if (!sharedObserver) {
+    sharedObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const callback = observerCallbacks.get(entry.target);
+          if (callback) {
+            callback(entry.isIntersecting);
+          }
+        });
+      },
+      { 
+        threshold,
+        rootMargin: '100px 0px' // Prepare animations before they enter the viewport
+      }
+    );
+  }
+  return sharedObserver;
+};
+
 const ScrollReveal: React.FC<ScrollRevealProps> = ({
   children,
   variant = 'slide-up',
@@ -17,33 +41,34 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
   duration = 1000,
   className = '',
   threshold = 0.1,
-  once = true,
+  once = false,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          if (once && ref.current) {
-            observer.unobserve(ref.current);
-          }
-        } else if (!once) {
-          setIsVisible(false);
-        }
-      },
-      { threshold }
-    );
+    const element = ref.current;
+    if (!element) return;
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+    const callback = (intersecting: boolean) => {
+      if (intersecting) {
+        setIsVisible(true);
+        if (once && element) {
+          getSharedObserver(threshold).unobserve(element);
+          observerCallbacks.delete(element);
+        }
+      } else if (!once) {
+        setIsVisible(intersecting);
+      }
+    };
+
+    observerCallbacks.set(element, callback);
+    getSharedObserver(threshold).observe(element);
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (element) {
+        getSharedObserver(threshold).unobserve(element);
+        observerCallbacks.delete(element);
       }
     };
   }, [threshold, once]);
@@ -68,10 +93,15 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
   return (
     <div
       ref={ref}
-      className={`transition-all ease-out ${getVariantStyles()} ${className}`}
+      className={`${getVariantStyles()} ${className} transition-all`}
       style={{
+        transitionProperty: 'opacity, transform',
         transitionDuration: `${duration}ms`,
         transitionDelay: `${delay}ms`,
+        transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+        willChange: 'opacity, transform', // Keep active for reactive animations
+        backfaceVisibility: 'hidden', // Extra GPU hint
+        transform: 'translate3d(0, 0, 0)' // Force GPU layer
       }}
     >
       {children}

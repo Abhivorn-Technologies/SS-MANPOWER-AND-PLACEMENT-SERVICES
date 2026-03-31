@@ -27,8 +27,8 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? "bg-background/95 backdrop-blur-md shadow-md border-b border-border/10" 
-          : "bg-background/80 backdrop-blur-md"
+          ? "bg-background shadow-md border-b border-border/10" 
+          : "bg-background/90"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between h-20 px-4">
@@ -42,7 +42,7 @@ const Navbar = () => {
             <Link
               key={link.path}
               to={link.path}
-              className={`relative text-sm font-medium transition-all group py-2 px-1 ${
+              className={`relative text-base font-medium transition-all group py-2 px-1 ${
                 location.pathname === link.path ? "text-secondary font-bold" : "text-foreground hover:text-secondary"
               }`}
             >
@@ -57,7 +57,7 @@ const Navbar = () => {
           ))}
           <a
             href="tel:+919177822547"
-            className="group inline-flex items-center gap-2 bg-gradient-accent text-accent-foreground px-6 py-2.5 rounded-full text-sm font-bold shadow-button hover:shadow-lg hover:scale-110 active:scale-95 transition-all duration-300"
+            className="group inline-flex items-center gap-2 bg-gradient-accent text-accent-foreground px-6 py-2.5 rounded-full text-base font-bold shadow-button hover:shadow-lg hover:scale-110 active:scale-95 transition-all duration-300"
           >
             <Phone className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" /> 
             <span>Call Now</span>
@@ -78,7 +78,7 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`py-2 text-sm font-medium ${
+                className={`py-2 text-base font-medium ${
                   location.pathname === link.path ? "text-secondary" : "text-foreground"
                 }`}
               >
@@ -87,7 +87,7 @@ const Navbar = () => {
             ))}
             <a
               href="tel:+919177822547"
-              className="inline-flex items-center justify-center gap-2 bg-gradient-accent text-accent-foreground px-5 py-2.5 rounded-lg text-sm font-semibold mt-2"
+              className="inline-flex items-center justify-center gap-2 bg-gradient-accent text-accent-foreground px-5 py-2.5 rounded-lg text-base font-semibold mt-2"
             >
               <Phone className="w-4 h-4" /> Call Now
             </a>
