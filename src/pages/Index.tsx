@@ -14,8 +14,8 @@ import manpowerBlue from "@/assets/manpower-blue.png";
 import officeBoyFinal from "@/assets/service-office-boy-final.png";
 import securityGuardLogo1 from "@/assets/security_guard_logo(1).png";
 import securityGuardLogo2 from "@/assets/security_guard_logo(2).png";
-import officeBoyWhite from "@/assets/service-office-boy-white-clean.png";
-import officeBoy2 from "@/assets/office_boy(2).png";
+import officeBoyWhite from "@/assets/service-office-boy-final.png";
+import officeBoy2 from "@/assets/office_boy_zoomed_out.png";
 import aboutPreview from "@/assets/about_preview_logo.png";
 import facilityBlue from "@/assets/feciity_management_logo.jpeg";
 import galleryBlue1 from "@/assets/about-preview.png";
@@ -54,7 +54,7 @@ const heroSlides = [
     image: officeBoyWhite,
     heading: "Expert Office Boys & Pantry Services",
     subheading: "Ensure your workplace runs smoothly with our well-trained and attentive office staff.",
-    position: "object-[center_15%]"
+    position: "object-[center_10%]"
   },
 ];
 
@@ -380,7 +380,7 @@ const Index = () => {
             {[
               { src: securityGuardLogo1, pos: "object-top" },
               { src: housekeepingLogo4, pos: "object-top" },
-              { src: officeBoy2, pos: "object-top" },
+              { src: officeBoy2, pos: "object-center" },
               { src: securityGuardLogo2, pos: "object-top" },
               { src: galSec3, pos: "object-top" },
               { src: galRecruit, pos: "object-top" }
