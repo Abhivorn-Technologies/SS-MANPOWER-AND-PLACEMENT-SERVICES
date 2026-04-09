@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/SS SERVICE LOGO.png";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -26,12 +26,14 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-background/95 backdrop-blur-md shadow-card" : "bg-background/80 backdrop-blur-sm"
+        scrolled 
+          ? "bg-background shadow-md border-b border-border/10" 
+          : "bg-background/90"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4">
-        <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="SS Placements Logo" className="h-12 md:h-14 w-auto" />
+      <div className="container mx-auto flex items-center justify-between h-20 px-4">
+        <Link to="/" className="flex items-center gap-2 group">
+          <img src={logo} alt="SS Security Logo" className="h-14 md:h-20 w-auto group-hover:scale-105 transition-transform duration-300" />
         </Link>
 
         {/* Desktop */}
@@ -40,18 +42,25 @@ const Navbar = () => {
             <Link
               key={link.path}
               to={link.path}
-              className={`text-sm font-medium transition-colors hover:text-secondary ${
-                location.pathname === link.path ? "text-secondary" : "text-foreground"
+              className={`relative text-base font-medium transition-all group py-2 px-1 ${
+                location.pathname === link.path ? "text-secondary font-bold" : "text-foreground hover:text-secondary"
               }`}
             >
-              {link.name}
+              <span className="relative z-10">{link.name}</span>
+              {/* Animated Underline */}
+              <span 
+                className={`absolute bottom-0 left-0 w-full h-0.5 bg-secondary transform transition-transform duration-500 origin-left ${
+                  location.pathname === link.path ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                }`} 
+              />
             </Link>
           ))}
           <a
             href="tel:+919177822547"
-            className="inline-flex items-center gap-2 bg-gradient-accent text-accent-foreground px-5 py-2.5 rounded-lg text-sm font-semibold shadow-button hover:opacity-90 transition"
+            className="group inline-flex items-center gap-2 bg-gradient-accent text-accent-foreground px-6 py-2.5 rounded-full text-base font-bold shadow-button hover:shadow-lg hover:scale-110 active:scale-95 transition-all duration-300"
           >
-            <Phone className="w-4 h-4" /> Call Now
+            <Phone className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" /> 
+            <span>Call Now</span>
           </a>
         </div>
 
@@ -69,7 +78,7 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`py-2 text-sm font-medium ${
+                className={`py-2 text-base font-medium ${
                   location.pathname === link.path ? "text-secondary" : "text-foreground"
                 }`}
               >
@@ -78,7 +87,7 @@ const Navbar = () => {
             ))}
             <a
               href="tel:+919177822547"
-              className="inline-flex items-center justify-center gap-2 bg-gradient-accent text-accent-foreground px-5 py-2.5 rounded-lg text-sm font-semibold mt-2"
+              className="inline-flex items-center justify-center gap-2 bg-gradient-accent text-accent-foreground px-5 py-2.5 rounded-lg text-base font-semibold mt-2"
             >
               <Phone className="w-4 h-4" /> Call Now
             </a>
