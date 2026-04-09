@@ -14,7 +14,7 @@ import manpowerBlue from "@/assets/manpower-blue.png";
 import officeBoyFinal from "@/assets/service-office-boy-final.png";
 import securityGuardLogo1 from "@/assets/security_guard_logo(1).png";
 import securityGuardLogo2 from "@/assets/security_guard_logo(2).png";
-import officeBoyWhite from "@/assets/service-office-boy-final.png";
+import officeBoyWhite from "@/assets/service_office_boy_final.png";
 import officeBoy2 from "@/assets/office_boy_zoomed_out.png";
 import aboutPreview from "@/assets/about_preview_logo.png";
 import facilityBlue from "@/assets/feciity_management_logo.jpeg";
@@ -54,7 +54,8 @@ const heroSlides = [
     image: officeBoyWhite,
     heading: "Expert Office Boys & Pantry Services",
     subheading: "Ensure your workplace runs smoothly with our well-trained and attentive office staff.",
-    position: "object-[center_10%]"
+    position: "object-top",
+    // scale: 1.45
   },
 ];
 
@@ -138,7 +139,7 @@ const Index = () => {
               className={`absolute inset-0 w-full h-full object-cover ${slide.position || "object-top"}`}
               style={{
                 opacity: currentSlide === i ? 1 : 0.9,
-                transform: `translateX(${(i - currentSlide) * 10}%) scale(${currentSlide === i ? 1.1 : 1})`,
+                transform: `translateX(${(i - currentSlide) * 10}%) scale(${currentSlide === i ? (slide.scale || 1.1) : 1})`,
                 transitionProperty: 'opacity, transform',
                 transitionDuration: '2000ms',
                 transitionTimingFunction: 'ease-in-out',
